@@ -18,7 +18,7 @@ namespace TencentCloud\Ump\V20200918\Models;
 use TencentCloud\Common\AbstractModel;
 
 /**
- * CreateMultiBizAlert请求参数结构体
+ * ModifyMultiBizConfig请求参数结构体
  *
  * @method string getGroupCode() 获取集团编码
  * @method void setGroupCode(string $GroupCode) 设置集团编码
@@ -28,22 +28,10 @@ use TencentCloud\Common\AbstractModel;
  * @method void setZoneId(integer $ZoneId) 设置点位ID
  * @method integer getCameraId() 获取摄像头ID
  * @method void setCameraId(integer $CameraId) 设置摄像头ID
- * @method integer getCaptureTime() 获取时间戳，毫秒
- * @method void setCaptureTime(integer $CaptureTime) 设置时间戳，毫秒
- * @method integer getState() 获取状态: 
-1: 侵占
-2: 消失
-3: 即侵占又消失
- * @method void setState(integer $State) 设置状态: 
-1: 侵占
-2: 消失
-3: 即侵占又消失
- * @method string getImage() 获取图片base64字符串
- * @method void setImage(string $Image) 设置图片base64字符串
- * @method array getWarnings() 获取告警列表
- * @method void setWarnings(array $Warnings) 设置告警列表
+ * @method array getMonitoringAreas() 获取监控区域
+ * @method void setMonitoringAreas(array $MonitoringAreas) 设置监控区域
  */
-class CreateMultiBizAlertRequest extends AbstractModel
+class ModifyMultiBizConfigRequest extends AbstractModel
 {
     /**
      * @var string 集团编码
@@ -66,40 +54,16 @@ class CreateMultiBizAlertRequest extends AbstractModel
     public $CameraId;
 
     /**
-     * @var integer 时间戳，毫秒
+     * @var array 监控区域
      */
-    public $CaptureTime;
-
-    /**
-     * @var integer 状态: 
-1: 侵占
-2: 消失
-3: 即侵占又消失
-     */
-    public $State;
-
-    /**
-     * @var string 图片base64字符串
-     */
-    public $Image;
-
-    /**
-     * @var array 告警列表
-     */
-    public $Warnings;
+    public $MonitoringAreas;
 
     /**
      * @param string $GroupCode 集团编码
      * @param integer $MallId 广场ID
      * @param integer $ZoneId 点位ID
      * @param integer $CameraId 摄像头ID
-     * @param integer $CaptureTime 时间戳，毫秒
-     * @param integer $State 状态: 
-1: 侵占
-2: 消失
-3: 即侵占又消失
-     * @param string $Image 图片base64字符串
-     * @param array $Warnings 告警列表
+     * @param array $MonitoringAreas 监控区域
      */
     function __construct()
     {
@@ -130,24 +94,12 @@ class CreateMultiBizAlertRequest extends AbstractModel
             $this->CameraId = $param["CameraId"];
         }
 
-        if (array_key_exists("CaptureTime",$param) and $param["CaptureTime"] !== null) {
-            $this->CaptureTime = $param["CaptureTime"];
-        }
-
-        if (array_key_exists("State",$param) and $param["State"] !== null) {
-            $this->State = $param["State"];
-        }
-
-        if (array_key_exists("Image",$param) and $param["Image"] !== null) {
-            $this->Image = $param["Image"];
-        }
-
-        if (array_key_exists("Warnings",$param) and $param["Warnings"] !== null) {
-            $this->Warnings = [];
-            foreach ($param["Warnings"] as $key => $value){
-                $obj = new MultiBizWarning();
+        if (array_key_exists("MonitoringAreas",$param) and $param["MonitoringAreas"] !== null) {
+            $this->MonitoringAreas = [];
+            foreach ($param["MonitoringAreas"] as $key => $value){
+                $obj = new Polygon();
                 $obj->deserialize($value);
-                array_push($this->Warnings, $obj);
+                array_push($this->MonitoringAreas, $obj);
             }
         }
     }
